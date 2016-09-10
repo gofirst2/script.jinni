@@ -4,7 +4,7 @@ import sys
 import xbmc
  
 def log(msg, level=xbmc.LOGNOTICE):
-	xbmc.log("[%s] - %s" % ("script.jinni", msg.encode('utf-8')), level=level)
+	xbmc.log("[%s] %s" % ("script.jinni", msg.encode("utf-8")), level=level)
 
 def getMoviesWith(*fields):
 	params = {'properties':fields, 'sort':{'order':'ascending', 'method':'label', 'ignorearticle':True }}
@@ -21,27 +21,24 @@ def executeJSON(method, params):
 
 if __name__ == '__main__':
 	id = sys.listitem.getVideoInfoTag().getIMDBNumber()
-
-	dir_path = os.path.dirname(os.path.realpath(__file__))
-	f = open(dir_path + "/jinni-links", "r")
+	found = []
+	f = open(os.path.dirname(os.path.realpath(__file__)) + "/jinni-links", "r")
 	while 1:
 		s = f.readline()
 		if s == "": break
 		if s[0:9] == id:
-			s = s[10:]
+			found = s[10:].split()
 			break
 	f.close()
-	if s == "":
-		xbmc.executebuiltin("Notification(\"Jinni\", \"Nothing found\")")
+	if len(found) == 0:
+		xbmc.executebuiltin("Notification(Jinni, Nothing found)")
 		sys.exit(0)
-	a = s.split()
-	xbmc.executebuiltin("Notification(\"Jinni\", \"Writing playlist\")")
 
+	xbmc.executebuiltin("Notification(Jinni, Writing playlist)")
 	movies = getMoviesWith("imdbnumber", "title", "file")
-
-	f = open(dir_path + "/../../userdata/playlists/video/Jinni.m3u", "w")
+	f = open(os.path.join(xbmc.translatePath("special://profile/playlists/video"), "Jinni.m3u"), "w")
 	f.write("#EXTM3U\n")
-	for x in a:
+	for x in found:
 		id = x.split("=")[0]
 		for m in movies:
 			if m["imdbnumber"] == id:
