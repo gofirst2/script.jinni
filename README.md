@@ -8,7 +8,8 @@ When selected, the add-on reads the included file **jinni-links** to get a list
 of all movies similar to the highlighted one.
 
 Then it writes a **Jinni.m3u** playlist containing those movies which are found
-in your video library, and opens the playlist.
+in your video library, and opens the playlist so you can choose a movie to play.
+The list is sorted from most-similar to least-similar, and limited to 100 entries.
 
 All of this happens locally and offline.
 
