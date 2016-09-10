@@ -13,6 +13,10 @@ The list is sorted from most-similar to least-similar, and limited to 100 entrie
 
 All of this happens locally and offline.
 
+![](screenshot1.jpg)
+
+![](screenshot2.jpg)
+
 The file **jinni-attrs** is provided for further improvements, but is not currently
 used. It contains the attributes assigned to each movie.
 
