@@ -1,1 +1,2 @@
 # script.jinni
+![](icon.png)
