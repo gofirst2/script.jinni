@@ -1,4 +1,4 @@
-# script.jinni - a Kodi add-on to recommend simliar movies
+# script.jinni - a Kodi add-on to recommend similar movies
 
 ![](icon.png)
 
